@@ -3,7 +3,6 @@ pragma solidity 0.5.4;
 contract TaskManager {
     uint256 public nTasks;
 
-    //enum TaskPhase {ToDo = 0, InProgress = 1, Done = 2, ...}
     enum TaskPhase {
         ToDo,
         InProgress,
@@ -18,14 +17,11 @@ contract TaskManager {
         address owner;
         string name;
         TaskPhase phase;
-        // Priority 1-5: 1 higher, 5 less important
         uint256 priority;
     }
     TaskStruct[] private tasks;
-    //TaskStruct[] public tasks;
 
     mapping(address => uint256[]) private myTasks;
-    //mapping (address => uint[]) public myTasks;
 
     event TaskAdded(
         address owner,
@@ -36,7 +32,7 @@ contract TaskManager {
 
     modifier onlyOwner(uint256 _taskIndex) {
         if (tasks[_taskIndex].owner == msg.sender) {
-            _;
+            _; //continua
         }
     }
 
